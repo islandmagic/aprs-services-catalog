@@ -1,0 +1,51 @@
+{
+  "id": "wxbot",
+  "kind": "bot",
+  "callsigns": ["WXBOT"],
+  "display_name": "WxBot",
+  "summary": "Weather forecast auto-responder.",
+  "category": "weather",
+  "icon": { "type": "sf_symbol", "name": "cloud.sun" },
+  "links": [{ "label": "Help", "url": "https://sites.google.com/site/ki6wjp/wxbot" }],
+  "compose": {
+    "intro": "Ask WxBot for a forecast. Leave blank or send a short message for your location.",
+    "commands": [
+      {
+        "id": "local_brief",
+        "title": "Local forecast",
+        "summary": "Brief forecast for your last known location.",
+        "syntax": "(empty or under 3 characters)",
+        "tokens": [],
+        "match": { "type": "any" },
+        "insert": "?"
+      },
+      {
+        "id": "city_forecast",
+        "title": "City forecast",
+        "summary": "Forecast for a US city and state.",
+        "syntax": "City,ST [day] [brief|full|current|metar|cwop]",
+        "tokens": ["brief", "full", "current", "metar", "cwop", "tonight", "tomorrow"],
+        "examples": [
+          "Boston,MA",
+          "Boston,MA Saturday full",
+          "96067",
+          "CN81uh",
+          "KSFO metar",
+          "current",
+          "cwop"
+        ],
+        "match": { "type": "freeform" },
+        "insert": "Boston,MA"
+      },
+      {
+        "id": "help",
+        "title": "Help",
+        "summary": "Return a help message.",
+        "syntax": "help",
+        "tokens": ["help", "?"],
+        "match": { "type": "prefix", "prefixes": ["help", "HELP", "?"] },
+        "insert": "help"
+      }
+    ]
+  }
+}

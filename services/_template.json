@@ -1,0 +1,24 @@
+{
+  "id": "example",
+  "kind": "bot",
+  "callsigns": ["EXAMPLE"],
+  "display_name": "Example Bot",
+  "summary": "One-line description shown in the app.",
+  "category": "info",
+  "icon": { "type": "sf_symbol", "name": "antenna.radiowaves.left.and.right" },
+  "links": [{ "label": "Help", "url": "https://example.com" }],
+  "compose": {
+    "intro": "Send commands as APRS messages to EXAMPLE.",
+    "commands": [
+      {
+        "id": "help",
+        "title": "Help",
+        "summary": "Show available commands.",
+        "syntax": "HELP",
+        "tokens": ["HELP", "?"],
+        "match": { "type": "prefix", "prefixes": ["HELP", "?"] },
+        "insert": "HELP"
+      }
+    ]
+  }
+}

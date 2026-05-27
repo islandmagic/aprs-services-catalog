@@ -1,0 +1,14 @@
+{
+  "id": "aprsph",
+  "kind": "service",
+  "callsigns": ["APRSPH"],
+  "display_name": "APRS.PH",
+  "summary": "APRS voice and messaging gateway.",
+  "category": "messaging",
+  "icon": { "type": "sf_symbol", "name": "phone.connection" },
+  "links": [],
+  "compose": {
+    "intro": "APRS.PH gateway commands.",
+    "commands": []
+  }
+}

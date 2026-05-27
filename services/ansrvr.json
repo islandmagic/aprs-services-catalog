@@ -1,0 +1,14 @@
+{
+  "id": "ansrvr",
+  "kind": "bot",
+  "callsigns": ["ANSRVR"],
+  "display_name": "ANSRVR",
+  "summary": "APRS message group server for nets and chat rooms.",
+  "category": "net",
+  "icon": { "type": "sf_symbol", "name": "person.3" },
+  "links": [{ "label": "Info", "url": "http://apps.magicbug.co.uk/ansrvr/" }],
+  "compose": {
+    "intro": "Join or leave APRS message groups via ANSRVR.",
+    "commands": []
+  }
+}

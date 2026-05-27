@@ -1,0 +1,14 @@
+{
+  "id": "email",
+  "kind": "service",
+  "callsigns": ["EMAIL"],
+  "display_name": "EMAIL",
+  "summary": "Send APRS messages to email addresses.",
+  "category": "messaging",
+  "icon": { "type": "sf_symbol", "name": "envelope" },
+  "links": [],
+  "compose": {
+    "intro": "Send email via the APRS EMAIL gateway.",
+    "commands": []
+  }
+}

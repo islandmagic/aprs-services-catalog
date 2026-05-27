@@ -1,0 +1,114 @@
+{
+  "$id": "https://github.com/islandmagic/aprs-services-catalog/schema/service.v1.schema.json",
+  "title": "APRS Service Definition",
+  "type": "object",
+  "required": ["id", "kind", "callsigns", "summary", "category", "icon", "compose"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_-]*$"
+    },
+    "kind": {
+      "type": "string",
+      "enum": ["bot", "service"]
+    },
+    "callsigns": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Z0-9]+$"
+      }
+    },
+    "display_name": { "type": "string", "minLength": 1 },
+    "summary": { "type": "string", "minLength": 1 },
+    "category": {
+      "type": "string",
+      "enum": ["weather", "mailbox", "messaging", "relay", "net", "info"]
+    },
+    "icon": {
+      "type": "object",
+      "required": ["type", "name"],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "type": "string", "enum": ["sf_symbol"] },
+        "name": { "type": "string", "minLength": 1 }
+      }
+    },
+    "links": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["label", "url"],
+        "additionalProperties": false,
+        "properties": {
+          "label": { "type": "string" },
+          "url": { "type": "string", "format": "uri" }
+        }
+      }
+    },
+    "compose": {
+      "type": "object",
+      "required": ["intro", "commands"],
+      "additionalProperties": false,
+      "properties": {
+        "intro": { "type": "string" },
+        "commands": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/command" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "command": {
+      "type": "object",
+      "required": ["id", "title", "summary", "syntax", "match"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z][a-z0-9_-]*$" },
+        "title": { "type": "string" },
+        "summary": { "type": "string" },
+        "syntax": { "type": "string" },
+        "tokens": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "examples": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "insert": { "type": "string" },
+        "match": {
+          "type": "object",
+          "required": ["type"],
+          "additionalProperties": false,
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": ["prefix", "any", "freeform", "parameterized"]
+            },
+            "prefixes": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "parameters": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "required": ["name", "label"],
+                "additionalProperties": false,
+                "properties": {
+                  "name": { "type": "string" },
+                  "label": { "type": "string" },
+                  "placeholder": { "type": "string" }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

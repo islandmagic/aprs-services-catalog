@@ -1,0 +1,13 @@
+{
+  "name": "aprs-services-catalog",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "compile": "node scripts/compile-catalog.mjs",
+    "validate": "node scripts/compile-catalog.mjs --out /tmp/aprs-services.v1.json"
+  },
+  "devDependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1"
+  }
+}

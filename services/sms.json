@@ -1,0 +1,59 @@
+{
+  "id": "sms",
+  "kind": "service",
+  "callsigns": ["SMS", "SMSGTE"],
+  "display_name": "SMS Gateway",
+  "summary": "Send APRS messages to cell phones via SMS.",
+  "category": "messaging",
+  "icon": { "type": "sf_symbol", "name": "message" },
+  "links": [{ "label": "How-To", "url": "https://aprs.wiki/howto/" }],
+  "compose": {
+    "intro": "Send an APRS message to SMS to reach a phone number.",
+    "commands": [
+      {
+        "id": "send_sms",
+        "title": "Send to phone",
+        "summary": "Send a text message to a 10-digit US/CA number.",
+        "syntax": "@<number> <message>",
+        "tokens": ["@"],
+        "examples": ["@9876543210 No cell coverage. Get me on the radio!"],
+        "match": {
+          "type": "parameterized",
+          "prefixes": ["@"],
+          "parameters": [
+            { "name": "number", "label": "Phone number", "placeholder": "9876543210" },
+            { "name": "message", "label": "Message", "placeholder": "Your message" }
+          ]
+        },
+        "insert": "@"
+      },
+      {
+        "id": "alias_add",
+        "title": "Add alias",
+        "summary": "Save a phone number under a short name.",
+        "syntax": "#alias #add <name> <number>",
+        "tokens": ["#alias", "#ALIAS"],
+        "match": { "type": "prefix", "prefixes": ["#alias", "#ALIAS"] },
+        "insert": "#alias #add "
+      },
+      {
+        "id": "check_missed",
+        "title": "Check missed messages",
+        "summary": "Manually fetch missed SMS messages.",
+        "syntax": "APRSM",
+        "tokens": ["APRSM"],
+        "match": { "type": "prefix", "prefixes": ["APRSM"] },
+        "insert": "APRSM"
+      },
+      {
+        "id": "delete_missed",
+        "title": "Delete missed messages",
+        "summary": "Clear all missed messages for your callsign.",
+        "syntax": "del",
+        "tokens": ["DEL", "del"],
+        "match": { "type": "prefix", "prefixes": ["del", "DEL"] },
+        "insert": "del"
+      }
+    ]
+  }
+}

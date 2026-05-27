@@ -1,0 +1,96 @@
+{
+  "id": "qrx",
+  "kind": "bot",
+  "callsigns": ["QRX"],
+  "display_name": "QRX",
+  "summary": "Missed-message mailbox for APRS.",
+  "category": "mailbox",
+  "icon": { "type": "sf_symbol", "name": "tray.full" },
+  "links": [{ "label": "Help", "url": "https://qrx.forkum.net" }],
+  "compose": {
+    "intro": "Send commands as APRS messages to QRX.",
+    "commands": [
+      {
+        "id": "reg",
+        "title": "Register",
+        "summary": "Register your callsign (central inbox for all SSIDs).",
+        "syntax": "REG",
+        "tokens": ["REG"],
+        "match": { "type": "prefix", "prefixes": ["REG"] },
+        "insert": "REG"
+      },
+      {
+        "id": "inbox",
+        "title": "Inbox",
+        "summary": "Show inbox and reset to newest message.",
+        "syntax": "I",
+        "tokens": ["I", "L", "INBOX"],
+        "match": { "type": "prefix", "prefixes": ["I", "L", "INBOX"] },
+        "insert": "I"
+      },
+      {
+        "id": "read",
+        "title": "Read message",
+        "summary": "Read the current message in your inbox.",
+        "syntax": "R",
+        "tokens": ["R", "READ"],
+        "match": { "type": "prefix", "prefixes": ["R", "READ"] },
+        "insert": "R"
+      },
+      {
+        "id": "next",
+        "title": "Next message",
+        "summary": "Skip to the next message.",
+        "syntax": "N",
+        "tokens": ["N", "NEXT"],
+        "match": { "type": "prefix", "prefixes": ["N", "NEXT"] },
+        "insert": "N"
+      },
+      {
+        "id": "who",
+        "title": "Who messaged you",
+        "summary": "List callsigns that left you messages.",
+        "syntax": "W",
+        "tokens": ["W", "WHO"],
+        "match": { "type": "prefix", "prefixes": ["W", "WHO"] },
+        "insert": "W"
+      },
+      {
+        "id": "ack",
+        "title": "Read receipt",
+        "summary": "Send a read receipt to the sender of the last message.",
+        "syntax": "A",
+        "tokens": ["A", "ACK"],
+        "match": { "type": "prefix", "prefixes": ["A", "ACK"] },
+        "insert": "A"
+      },
+      {
+        "id": "del",
+        "title": "Delete message",
+        "summary": "Delete the last read message.",
+        "syntax": "D",
+        "tokens": ["D", "DEL"],
+        "match": { "type": "prefix", "prefixes": ["D", "DEL"] },
+        "insert": "D"
+      },
+      {
+        "id": "status",
+        "title": "Status",
+        "summary": "Check registration and inbox count.",
+        "syntax": "S",
+        "tokens": ["S", "STATUS"],
+        "match": { "type": "prefix", "prefixes": ["S", "STATUS"] },
+        "insert": "S"
+      },
+      {
+        "id": "help",
+        "title": "Help",
+        "summary": "Show command help.",
+        "syntax": "H",
+        "tokens": ["H", "HELP", "?"],
+        "match": { "type": "prefix", "prefixes": ["H", "HELP", "?"] },
+        "insert": "H"
+      }
+    ]
+  }
+}

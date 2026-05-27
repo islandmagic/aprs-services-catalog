@@ -1,0 +1,71 @@
+name: Publish APRS Service Catalog
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - "services/**"
+      - "schema/**"
+      - "scripts/**"
+      - ".github/workflows/publish-catalog.yml"
+  pull_request:
+    paths:
+      - "services/**"
+      - "schema/**"
+      - "scripts/**"
+      - ".github/workflows/publish-catalog.yml"
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in: true
+
+jobs:
+  validate:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - run: npm run validate
+
+  publish:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - run: npm ci
+      - name: Compile catalog
+        run: node scripts/compile-catalog.mjs --out _site/aprs-services.v1.json
+      - name: Add index pointer
+        run: |
+          cat > _site/index.html <<'EOF'
+          <!DOCTYPE html>
+          <html lang="en">
+          <head><meta charset="utf-8"><title>APRS Service Catalog</title></head>
+          <body>
+          <p>APRS bot/service catalog for Radio Messenger.</p>
+          <p><a href="aprs-services.v1.json">aprs-services.v1.json</a></p>
+          </body>
+          </html>
+          EOF
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deployment
+        uses: actions/deploy-pages@v4
