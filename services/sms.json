@@ -5,17 +5,7 @@
     "SMS"
   ],
   "display_name": "SMS Gateway",
-  "category": "messaging",
-  "icon": {
-    "type": "sf_symbol",
-    "name": "phone.bubble"
-  },
-  "links": [
-    {
-      "label": "Help",
-      "url": "https://aprs.wiki/"
-    }
-  ],
+  "icon": "phone.bubble",
   "compose": {
     "intro": "Send an APRS message to SMS to reach a phone number. Recipients must opt in at aprs.wiki.",
     "commands": [
@@ -100,5 +90,6 @@
       }
     ]
   },
-  "description": "Two-way gateway between APRS and SMS (USA, Puerto Rico, Canada, Australia, UK)."
+  "description": "Two-way gateway between APRS and SMS (USA, Puerto Rico, Canada, Australia, UK).",
+  "url": "https://aprs.wiki/"
 }

@@ -5,17 +5,7 @@
     "WXBOT"
   ],
   "display_name": "WxBot",
-  "category": "weather",
-  "icon": {
-    "type": "sf_symbol",
-    "name": "cloud.sun"
-  },
-  "links": [
-    {
-      "label": "Help",
-      "url": "https://sites.google.com/site/ki6wjp/wxbot"
-    }
-  ],
+  "icon": "cloud.sun",
   "compose": {
     "intro": "Ask WxBot for a forecast at your last known location, or send a city, zip, or grid square.",
     "commands": [
@@ -133,5 +123,6 @@
       }
     ]
   },
-  "description": "Responds with a brief US National Weather Service forecast."
+  "description": "Responds with a brief US National Weather Service forecast.",
+  "url": "https://sites.google.com/site/ki6wjp/wxbot"
 }

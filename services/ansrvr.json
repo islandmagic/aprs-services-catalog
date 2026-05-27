@@ -5,17 +5,7 @@
     "ANSRVR"
   ],
   "display_name": "ANSRVR",
-  "category": "net",
-  "icon": {
-    "type": "sf_symbol",
-    "name": "person.3"
-  },
-  "links": [
-    {
-      "label": "Help",
-      "url": "http://aprsisce.wikidot.com/doc:ansrvr"
-    }
-  ],
+  "icon": "person.3",
   "compose": {
     "intro": "ANSRVR runs APRS message groups for announcements and interest topics. Join quietly to monitor, or CQ a group to join and announce to all current members.",
     "commands": [
@@ -230,5 +220,6 @@
       }
     ]
   },
-  "description": "Announcement group server — join groups and send announcements to members with similar interests."
+  "description": "Announcement group server — join groups and send announcements to members with similar interests.",
+  "url": "http://aprsisce.wikidot.com/doc:ansrvr"
 }

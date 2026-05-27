@@ -5,17 +5,7 @@
     "QRX"
   ],
   "display_name": "QRX",
-  "category": "mailbox",
-  "icon": {
-    "type": "sf_symbol",
-    "name": "tray.full"
-  },
-  "links": [
-    {
-      "label": "Help",
-      "url": "https://qrx.forkum.net"
-    }
-  ],
+  "icon": "tray.full",
   "compose": {
     "intro": "Send commands as APRS messages to QRX.",
     "commands": [
@@ -187,5 +177,6 @@
       }
     ]
   },
-  "description": "Missed message mailbox. Holds msgs you miss while offline."
+  "description": "Missed message mailbox. Holds msgs you miss while offline.",
+  "url": "https://qrx.forkum.net"
 }

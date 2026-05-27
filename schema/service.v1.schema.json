@@ -2,7 +2,7 @@
   "$id": "https://github.com/islandmagic/aprs-services-catalog/schema/service.v1.schema.json",
   "title": "APRS Service Definition",
   "type": "object",
-  "required": ["id", "kind", "callsigns", "description", "category", "icon", "compose"],
+  "required": ["id", "kind", "callsigns", "description", "icon", "compose"],
   "additionalProperties": false,
   "properties": {
     "id": {
@@ -23,31 +23,8 @@
     },
     "display_name": { "type": "string", "minLength": 1 },
     "description": { "type": "string", "minLength": 1 },
-    "category": {
-      "type": "string",
-      "enum": ["weather", "mailbox", "messaging", "relay", "net", "info"]
-    },
-    "icon": {
-      "type": "object",
-      "required": ["type", "name"],
-      "additionalProperties": false,
-      "properties": {
-        "type": { "type": "string", "enum": ["sf_symbol"] },
-        "name": { "type": "string", "minLength": 1 }
-      }
-    },
-    "links": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "required": ["label", "url"],
-        "additionalProperties": false,
-        "properties": {
-          "label": { "type": "string" },
-          "url": { "type": "string", "format": "uri" }
-        }
-      }
-    },
+    "icon": { "type": "string", "minLength": 1 },
+    "url": { "type": "string", "format": "uri" },
     "compose": {
       "type": "object",
       "required": ["intro", "commands"],

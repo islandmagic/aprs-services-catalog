@@ -5,17 +5,7 @@
     "EMAIL"
   ],
   "display_name": "EMAIL",
-  "category": "messaging",
-  "icon": {
-    "type": "sf_symbol",
-    "name": "envelope"
-  },
-  "links": [
-    {
-      "label": "Help",
-      "url": "https://www.aprs-is.net/Email.aspx"
-    }
-  ],
+  "icon": "envelope",
   "compose": {
     "intro": "Send email via the APRS EMAIL gateway (also reachable as EMAIL-2). One line per message, 67 characters maximum.",
     "commands": [
@@ -86,5 +76,6 @@
       }
     ]
   },
-  "description": "Gateway to forward APRS messages to Internet email."
+  "description": "Gateway to forward APRS messages to Internet email.",
+  "url": "https://www.aprs-is.net/Email.aspx"
 }

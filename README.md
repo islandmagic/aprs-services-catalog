@@ -15,7 +15,7 @@ https://islandmagic.github.io/aprs-services-catalog/aprs-services.v1.json
 1. Copy `services/_template.json` → `services/{id}.json` (filename must match `id`).
 2. Fill required fields:
    - `callsigns`: uppercase base callsigns only (no SSID suffix in the array).
-   - `icon.type`: `sf_symbol` with a valid SF Symbol name.
+   - `icon`: SF Symbol name (e.g. `cloud.sun`).
    - `compose.commands`: at least one command with a `match` rule (stubs may use `[]`).
 3. Open a PR — CI validates JSON Schema and unique callsigns.
 4. Merge — GitHub Pages deploys the compiled catalog (~1 min).

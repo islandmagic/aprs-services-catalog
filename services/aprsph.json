@@ -5,17 +5,7 @@
     "APRSPH"
   ],
   "display_name": "APRSPH",
-  "category": "net",
-  "icon": {
-    "type": "sf_symbol",
-    "name": "person.3"
-  },
-  "links": [
-    {
-      "label": "Help",
-      "url": "http://aprsph.net"
-    }
-  ],
+  "icon": "person.3",
   "compose": {
     "intro": "Check in to the daily APRSPH Net or send bot commands to APRSPH. The net resets at 0000 UTC; check in again each day to stay on the list.",
     "commands": [
@@ -317,5 +307,6 @@
       }
     ]
   },
-  "description": "Network of operators sharing messages and position packets through radio and internet."
+  "description": "Network of operators sharing messages and position packets through radio and internet.",
+  "url": "http://aprsph.net"
 }
