@@ -4,7 +4,6 @@
   "callsigns": [
     "WXBOT"
   ],
-  "display_name": "WxBot",
   "icon": "cloud.sun",
   "compose": {
     "intro": "Ask WxBot for a forecast at your last known location, or send a city, zip, or grid square.",

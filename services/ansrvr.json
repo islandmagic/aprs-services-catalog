@@ -4,7 +4,6 @@
   "callsigns": [
     "ANSRVR"
   ],
-  "display_name": "ANSRVR",
   "icon": "person.3",
   "compose": {
     "intro": "ANSRVR runs APRS message groups for announcements and interest topics. Join quietly to monitor, or CQ a group to join and announce to all current members.",

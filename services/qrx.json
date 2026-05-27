@@ -4,7 +4,6 @@
   "callsigns": [
     "QRX"
   ],
-  "display_name": "QRX",
   "icon": "tray.full",
   "compose": {
     "intro": "Send commands as APRS messages to QRX.",

@@ -4,7 +4,6 @@
   "callsigns": [
     "EMAIL"
   ],
-  "display_name": "EMAIL",
   "icon": "envelope",
   "compose": {
     "intro": "Send email via the APRS EMAIL gateway (also reachable as EMAIL-2). One line per message, 67 characters maximum.",

@@ -4,7 +4,6 @@
   "callsigns": [
     "SMS"
   ],
-  "display_name": "SMS Gateway",
   "icon": "phone.bubble",
   "compose": {
     "intro": "Send an APRS message to SMS to reach a phone number. Recipients must opt in at aprs.wiki.",
