@@ -1,51 +1,137 @@
 {
   "id": "wxbot",
   "kind": "bot",
-  "callsigns": ["WXBOT"],
+  "callsigns": [
+    "WXBOT"
+  ],
   "display_name": "WxBot",
-  "summary": "Weather forecast auto-responder.",
   "category": "weather",
-  "icon": { "type": "sf_symbol", "name": "cloud.sun" },
-  "links": [{ "label": "Help", "url": "https://sites.google.com/site/ki6wjp/wxbot" }],
+  "icon": {
+    "type": "sf_symbol",
+    "name": "cloud.sun"
+  },
+  "links": [
+    {
+      "label": "Help",
+      "url": "https://sites.google.com/site/ki6wjp/wxbot"
+    }
+  ],
   "compose": {
-    "intro": "Ask WxBot for a forecast. Leave blank or send a short message for your location.",
+    "intro": "Ask WxBot for a forecast at your last known location, or send a city, zip, or grid square.",
     "commands": [
       {
-        "id": "local_brief",
-        "title": "Local forecast",
-        "summary": "Brief forecast for your last known location.",
-        "syntax": "(empty or under 3 characters)",
-        "tokens": [],
-        "match": { "type": "any" },
-        "insert": "?"
+        "id": "brief",
+        "syntax": "brief",
+        "tokens": [
+          "brief",
+          "BRIEF"
+        ],
+        "match": {
+          "type": "prefix",
+          "prefixes": [
+            "brief",
+            "BRIEF"
+          ]
+        },
+        "insert": "brief",
+        "description": "Short weather forecast for your location (default)."
+      },
+      {
+        "id": "current",
+        "syntax": "current",
+        "tokens": [
+          "current",
+          "CURRENT"
+        ],
+        "match": {
+          "type": "prefix",
+          "prefixes": [
+            "current",
+            "CURRENT"
+          ]
+        },
+        "insert": "current",
+        "description": "Current conditions from nearest NWS station."
+      },
+      {
+        "id": "full",
+        "syntax": "full",
+        "tokens": [
+          "full",
+          "FULL"
+        ],
+        "match": {
+          "type": "prefix",
+          "prefixes": [
+            "full",
+            "FULL"
+          ]
+        },
+        "insert": "full",
+        "description": "Detailed multi-message forecast."
+      },
+      {
+        "id": "metar",
+        "syntax": "metar",
+        "tokens": [
+          "metar",
+          "METAR"
+        ],
+        "match": {
+          "type": "prefix",
+          "prefixes": [
+            "metar",
+            "METAR"
+          ]
+        },
+        "insert": "metar",
+        "description": "METAR report from nearest airport."
       },
       {
         "id": "city_forecast",
-        "title": "City forecast",
-        "summary": "Forecast for a US city and state.",
         "syntax": "City,ST [day] [brief|full|current|metar|cwop]",
-        "tokens": ["brief", "full", "current", "metar", "cwop", "tonight", "tomorrow"],
+        "tokens": [
+          "brief",
+          "full",
+          "current",
+          "metar",
+          "cwop",
+          "tonight",
+          "tomorrow"
+        ],
         "examples": [
           "Boston,MA",
           "Boston,MA Saturday full",
           "96067",
           "CN81uh",
           "KSFO metar",
-          "current",
           "cwop"
         ],
-        "match": { "type": "freeform" },
-        "insert": "Boston,MA"
+        "match": {
+          "type": "freeform"
+        },
+        "insert": "Boston,MA",
+        "description": "Forecast for a US city, zip, or grid square."
       },
       {
         "id": "help",
-        "title": "Help",
-        "summary": "Return a help message.",
         "syntax": "help",
-        "tokens": ["help", "?"],
-        "match": { "type": "prefix", "prefixes": ["help", "HELP", "?"] },
-        "insert": "help"
+        "tokens": [
+          "help",
+          "?"
+        ],
+        "match": {
+          "type": "prefix",
+          "prefixes": [
+            "help",
+            "HELP",
+            "?"
+          ]
+        },
+        "insert": "help",
+        "description": "Show usage information."
       }
     ]
-  }
+  },
+  "description": "Responds with a brief US National Weather Service forecast."
 }

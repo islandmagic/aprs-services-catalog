@@ -1,14 +1,90 @@
 {
   "id": "email",
   "kind": "service",
-  "callsigns": ["EMAIL"],
+  "callsigns": [
+    "EMAIL"
+  ],
   "display_name": "EMAIL",
-  "summary": "Send APRS messages to email addresses.",
   "category": "messaging",
-  "icon": { "type": "sf_symbol", "name": "envelope" },
-  "links": [],
+  "icon": {
+    "type": "sf_symbol",
+    "name": "envelope"
+  },
+  "links": [
+    {
+      "label": "Help",
+      "url": "https://www.aprs-is.net/Email.aspx"
+    }
+  ],
   "compose": {
-    "intro": "Send email via the APRS EMAIL gateway.",
-    "commands": []
-  }
+    "intro": "Send email via the APRS EMAIL gateway (also reachable as EMAIL-2). One line per message, 67 characters maximum.",
+    "commands": [
+      {
+        "id": "send_email",
+        "syntax": "<email> <message>",
+        "examples": [
+          "user@example.com On the road, QRV on 146.52"
+        ],
+        "match": {
+          "type": "parameterized",
+          "parameters": [
+            {
+              "name": "email",
+              "label": "Email address",
+              "placeholder": "user@example.com"
+            },
+            {
+              "name": "message",
+              "label": "Message",
+              "placeholder": "Your message"
+            }
+          ]
+        },
+        "insert": "",
+        "description": "Send email to an address (67 character max)."
+      },
+      {
+        "id": "send_shortcut",
+        "syntax": "<shortcut> <message>",
+        "examples": [
+          "me Heading to the site now"
+        ],
+        "match": {
+          "type": "parameterized",
+          "parameters": [
+            {
+              "name": "shortcut",
+              "label": "Shortcut name",
+              "placeholder": "me"
+            },
+            {
+              "name": "message",
+              "label": "Message",
+              "placeholder": "Your message"
+            }
+          ]
+        },
+        "insert": "",
+        "description": "Send email using a saved shortcut."
+      },
+      {
+        "id": "get",
+        "syntax": "get",
+        "tokens": [
+          "get",
+          "GET"
+        ],
+        "match": {
+          "type": "prefix",
+          "prefixes": [
+            "get",
+            "GET"
+          ]
+        },
+        "insert": "get",
+        "description": "Retrieve cached inbound email-to-APRS messages."
+      }
+    ]
+  },
+  "description": "Gateway to forward APRS messages to Internet email."
 }

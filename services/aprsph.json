@@ -1,14 +1,325 @@
 {
   "id": "aprsph",
-  "kind": "service",
-  "callsigns": ["APRSPH"],
-  "display_name": "APRS.PH",
-  "summary": "APRS voice and messaging gateway.",
-  "category": "messaging",
-  "icon": { "type": "sf_symbol", "name": "phone.connection" },
-  "links": [],
+  "kind": "bot",
+  "callsigns": [
+    "APRSPH"
+  ],
+  "display_name": "APRSPH",
+  "category": "net",
+  "icon": {
+    "type": "sf_symbol",
+    "name": "person.3"
+  },
+  "links": [
+    {
+      "label": "Commands",
+      "url": "http://aprsph.net"
+    },
+    {
+      "label": "Net log",
+      "url": "https://aprsph.net/#net-logs"
+    }
+  ],
   "compose": {
-    "intro": "APRS.PH gateway commands.",
-    "commands": []
-  }
+    "intro": "Check in to the daily APRSPH Net or send bot commands to APRSPH. The net resets at 0000 UTC; check in again each day to stay on the list.",
+    "commands": [
+      {
+        "id": "cq",
+        "syntax": "CQ <message>",
+        "tokens": [
+          "CQ"
+        ],
+        "examples": [
+          "CQ 73 from EM74"
+        ],
+        "match": {
+          "type": "parameterized",
+          "prefixes": [
+            "CQ"
+          ],
+          "parameters": [
+            {
+              "name": "message",
+              "label": "Message",
+              "placeholder": "Your net message"
+            }
+          ]
+        },
+        "insert": "CQ ",
+        "description": "Join the net and send a message to all checked-in stations."
+      },
+      {
+        "id": "net",
+        "syntax": "NET [message]",
+        "tokens": [
+          "NET"
+        ],
+        "examples": [
+          "NET",
+          "NET Checking in quietly"
+        ],
+        "match": {
+          "type": "parameterized",
+          "prefixes": [
+            "NET"
+          ],
+          "parameters": [
+            {
+              "name": "message",
+              "label": "Message (optional)",
+              "placeholder": "Optional note"
+            }
+          ]
+        },
+        "insert": "NET ",
+        "description": "Join the net without alerting everyone; your check-in is logged only."
+      },
+      {
+        "id": "list",
+        "syntax": "LIST",
+        "tokens": [
+          "LIST"
+        ],
+        "match": {
+          "type": "prefix",
+          "prefixes": [
+            "LIST"
+          ]
+        },
+        "insert": "LIST",
+        "description": "Show stations checked in for the current UTC day."
+      },
+      {
+        "id": "last",
+        "syntax": "LAST [10|15] [THURS]",
+        "tokens": [
+          "LAST",
+          "LAST10",
+          "LAST15"
+        ],
+        "examples": [
+          "LAST",
+          "LAST10",
+          "LAST THURS",
+          "LAST10 THURS"
+        ],
+        "match": {
+          "type": "prefix",
+          "prefixes": [
+            "LAST",
+            "LAST10",
+            "LAST15",
+            "LAST THURS",
+            "LAST10 THURS",
+            "LAST15 THURS"
+          ]
+        },
+        "insert": "LAST",
+        "description": "Show the last 5, 10, or 15 net messages. Use LAST THURS for #APRSThursday logs."
+      },
+      {
+        "id": "mine",
+        "syntax": "MINE [10|15] [THURS] [callsign-SSID]",
+        "tokens": [
+          "MINE",
+          "MINE10",
+          "MINE15"
+        ],
+        "examples": [
+          "MINE",
+          "MINE10",
+          "MINE THURS",
+          "MINE DV2XXR-7"
+        ],
+        "match": {
+          "type": "prefix",
+          "prefixes": [
+            "MINE",
+            "MINE10",
+            "MINE15",
+            "MINE THURS",
+            "MINE10 THURS",
+            "MINE15 THURS"
+          ]
+        },
+        "insert": "MINE",
+        "description": "Show your recent CQ/NET messages this month. Add a callsign-SSID to query another station."
+      },
+      {
+        "id": "search",
+        "syntax": "SEARCH <phrase> | SEARCH10 | SEARCH15",
+        "tokens": [
+          "SEARCH",
+          "SEARCH10",
+          "SEARCH15"
+        ],
+        "examples": [
+          "SEARCH Guatemala",
+          "SEARCH10 emergency"
+        ],
+        "match": {
+          "type": "parameterized",
+          "prefixes": [
+            "SEARCH",
+            "SEARCH10",
+            "SEARCH15"
+          ],
+          "parameters": [
+            {
+              "name": "phrase",
+              "label": "Word or phrase",
+              "placeholder": "Search term"
+            }
+          ]
+        },
+        "insert": "SEARCH ",
+        "description": "Find recent messages from this month containing a word or phrase."
+      },
+      {
+        "id": "path_trace",
+        "syntax": "?APRST | ?PING?",
+        "tokens": [
+          "?APRST",
+          "?PING?"
+        ],
+        "match": {
+          "type": "prefix",
+          "prefixes": [
+            "?APRST",
+            "?PING?"
+          ]
+        },
+        "insert": "?APRST",
+        "description": "Show the path your packet took to reach the bot."
+      },
+      {
+        "id": "position",
+        "syntax": "?APRSP",
+        "tokens": [
+          "?APRSP"
+        ],
+        "match": {
+          "type": "prefix",
+          "prefixes": [
+            "?APRSP"
+          ]
+        },
+        "insert": "?APRSP",
+        "description": "Make the bot transmit a position packet."
+      },
+      {
+        "id": "status",
+        "syntax": "?APRSS",
+        "tokens": [
+          "?APRSS"
+        ],
+        "match": {
+          "type": "prefix",
+          "prefixes": [
+            "?APRSS"
+          ]
+        },
+        "insert": "?APRSS",
+        "description": "Status packet with today's check-in count and SMS processed count."
+      },
+      {
+        "id": "inbox",
+        "syntax": "?APRSM | MSG | M [callsign-SSID]",
+        "tokens": [
+          "?APRSM",
+          "MSG",
+          "M"
+        ],
+        "examples": [
+          "?APRSM",
+          "MSG",
+          "M DV2XXR-7"
+        ],
+        "match": {
+          "type": "prefix",
+          "prefixes": [
+            "?APRSM",
+            "MSG",
+            "M"
+          ]
+        },
+        "insert": "?APRSM",
+        "description": "Retrieve the last 10 APRS messages sent to your callsign+SSID via aprs.fi."
+      },
+      {
+        "id": "unsubscribe",
+        "syntax": "UNSUBSCRIBE | U [message]",
+        "tokens": [
+          "UNSUBSCRIBE",
+          "U"
+        ],
+        "examples": [
+          "U",
+          "U checking out for the day. 73!"
+        ],
+        "match": {
+          "type": "parameterized",
+          "prefixes": [
+            "UNSUBSCRIBE",
+            "U"
+          ],
+          "parameters": [
+            {
+              "name": "message",
+              "label": "Checkout note (optional)",
+              "placeholder": "See you tomorrow"
+            }
+          ]
+        },
+        "insert": "U ",
+        "description": "Leave the net for the day; you will not receive CQ relays until you check in again."
+      },
+      {
+        "id": "sat",
+        "syntax": "SAT <number> <message>",
+        "tokens": [
+          "SAT"
+        ],
+        "examples": [
+          "SAT 12345678 Hello from APRS"
+        ],
+        "match": {
+          "type": "parameterized",
+          "prefixes": [
+            "SAT"
+          ],
+          "parameters": [
+            {
+              "name": "number",
+              "label": "Thuraya number",
+              "placeholder": "12345678"
+            },
+            {
+              "name": "message",
+              "label": "Message",
+              "placeholder": "Your message"
+            }
+          ]
+        },
+        "insert": "SAT ",
+        "description": "Send an SMS to a Thuraya satellite phone (digits after +88216)."
+      },
+      {
+        "id": "help",
+        "syntax": "HELP",
+        "tokens": [
+          "HELP"
+        ],
+        "match": {
+          "type": "prefix",
+          "prefixes": [
+            "HELP"
+          ]
+        },
+        "insert": "HELP",
+        "description": "List available bot commands."
+      }
+    ]
+  },
+  "description": "Network of operators sharing messages and position packets through radio and internet."
 }

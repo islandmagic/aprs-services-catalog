@@ -1,59 +1,108 @@
 {
   "id": "sms",
   "kind": "service",
-  "callsigns": ["SMS", "SMSGTE"],
+  "callsigns": [
+    "SMS"
+  ],
   "display_name": "SMS Gateway",
-  "summary": "Send APRS messages to cell phones via SMS.",
   "category": "messaging",
-  "icon": { "type": "sf_symbol", "name": "message" },
-  "links": [{ "label": "How-To", "url": "https://aprs.wiki/howto/" }],
+  "icon": {
+    "type": "sf_symbol",
+    "name": "phone.bubble"
+  },
+  "links": [
+    {
+      "label": "How-To",
+      "url": "https://aprs.wiki/"
+    },
+    {
+      "label": "Setup",
+      "url": "https://aprs.wiki/howto/"
+    }
+  ],
   "compose": {
-    "intro": "Send an APRS message to SMS to reach a phone number.",
+    "intro": "Send an APRS message to SMS to reach a phone number. Recipients must opt in at aprs.wiki.",
     "commands": [
       {
         "id": "send_sms",
-        "title": "Send to phone",
-        "summary": "Send a text message to a 10-digit US/CA number.",
         "syntax": "@<number> <message>",
-        "tokens": ["@"],
-        "examples": ["@9876543210 No cell coverage. Get me on the radio!"],
+        "tokens": [
+          "@"
+        ],
+        "examples": [
+          "@9876543210 No cell coverage. Get me on the radio!"
+        ],
         "match": {
           "type": "parameterized",
-          "prefixes": ["@"],
+          "prefixes": [
+            "@"
+          ],
           "parameters": [
-            { "name": "number", "label": "Phone number", "placeholder": "9876543210" },
-            { "name": "message", "label": "Message", "placeholder": "Your message" }
+            {
+              "name": "number",
+              "label": "Phone number or alias",
+              "placeholder": "9876543210"
+            },
+            {
+              "name": "message",
+              "label": "Message",
+              "placeholder": "Your message"
+            }
           ]
         },
-        "insert": "@"
+        "insert": "@",
+        "description": "Send SMS to a phone number or alias (recipient must opt in at aprs.wiki)."
       },
       {
         "id": "alias_add",
-        "title": "Add alias",
-        "summary": "Save a phone number under a short name.",
         "syntax": "#alias #add <name> <number>",
-        "tokens": ["#alias", "#ALIAS"],
-        "match": { "type": "prefix", "prefixes": ["#alias", "#ALIAS"] },
-        "insert": "#alias #add "
+        "tokens": [
+          "#alias",
+          "#ALIAS"
+        ],
+        "match": {
+          "type": "prefix",
+          "prefixes": [
+            "#alias",
+            "#ALIAS"
+          ]
+        },
+        "insert": "#alias #add ",
+        "description": "Save a phone number under a short name."
       },
       {
         "id": "check_missed",
-        "title": "Check missed messages",
-        "summary": "Manually fetch missed SMS messages.",
         "syntax": "APRSM",
-        "tokens": ["APRSM"],
-        "match": { "type": "prefix", "prefixes": ["APRSM"] },
-        "insert": "APRSM"
+        "tokens": [
+          "APRSM"
+        ],
+        "match": {
+          "type": "prefix",
+          "prefixes": [
+            "APRSM"
+          ]
+        },
+        "insert": "APRSM",
+        "description": "Manually fetch missed SMS messages."
       },
       {
         "id": "delete_missed",
-        "title": "Delete missed messages",
-        "summary": "Clear all missed messages for your callsign.",
         "syntax": "del",
-        "tokens": ["DEL", "del"],
-        "match": { "type": "prefix", "prefixes": ["del", "DEL"] },
-        "insert": "del"
+        "tokens": [
+          "DEL",
+          "del"
+        ],
+        "match": {
+          "type": "prefix",
+          "prefixes": [
+            "del",
+            "DEL"
+          ]
+        },
+        "insert": "del",
+        "description": "Clear all missed messages for your callsign."
       }
     ]
-  }
+  },
+  "description": "Two-way gateway between APRS and SMS (USA, Puerto Rico, Canada, Australia, UK)."
 }

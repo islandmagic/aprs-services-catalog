@@ -1,14 +1,234 @@
 {
   "id": "ansrvr",
   "kind": "bot",
-  "callsigns": ["ANSRVR"],
+  "callsigns": [
+    "ANSRVR"
+  ],
   "display_name": "ANSRVR",
-  "summary": "APRS message group server for nets and chat rooms.",
   "category": "net",
-  "icon": { "type": "sf_symbol", "name": "person.3" },
-  "links": [{ "label": "Info", "url": "http://apps.magicbug.co.uk/ansrvr/" }],
+  "icon": {
+    "type": "sf_symbol",
+    "name": "person.3"
+  },
+  "links": [
+    {
+      "label": "Commands",
+      "url": "http://aprsisce.wikidot.com/doc:ansrvr"
+    }
+  ],
   "compose": {
-    "intro": "Join or leave APRS message groups via ANSRVR.",
-    "commands": []
-  }
+    "intro": "ANSRVR runs APRS message groups for announcements and interest topics. Join quietly to monitor, or CQ a group to join and announce to all current members.",
+    "commands": [
+      {
+        "id": "list_groups",
+        "syntax": "?",
+        "tokens": [
+          "?"
+        ],
+        "match": {
+          "type": "prefix",
+          "prefixes": [
+            "?"
+          ]
+        },
+        "insert": "?",
+        "description": "List all active groups."
+      },
+      {
+        "id": "group_count",
+        "syntax": "? <group>",
+        "tokens": [
+          "?"
+        ],
+        "examples": [
+          "? SKYWARN",
+          "? ISS"
+        ],
+        "match": {
+          "type": "parameterized",
+          "prefixes": [
+            "?"
+          ],
+          "parameters": [
+            {
+              "name": "group",
+              "label": "Group name",
+              "placeholder": "SKYWARN"
+            }
+          ]
+        },
+        "insert": "? ",
+        "description": "Show how many stations are in one group."
+      },
+      {
+        "id": "list_descriptions",
+        "syntax": "D",
+        "tokens": [
+          "D"
+        ],
+        "match": {
+          "type": "prefix",
+          "prefixes": [
+            "D"
+          ]
+        },
+        "insert": "D",
+        "description": "Show groups with descriptions."
+      },
+      {
+        "id": "set_description",
+        "syntax": "D <group> <description>",
+        "tokens": [
+          "D"
+        ],
+        "examples": [
+          "D SKYWARN Local NWS spotters"
+        ],
+        "match": {
+          "type": "parameterized",
+          "prefixes": [
+            "D"
+          ],
+          "parameters": [
+            {
+              "name": "group",
+              "label": "Group name",
+              "placeholder": "SKYWARN"
+            },
+            {
+              "name": "description",
+              "label": "Description",
+              "placeholder": "What this group is for"
+            }
+          ]
+        },
+        "insert": "D ",
+        "description": "Submit a description for a group to the server."
+      },
+      {
+        "id": "list_joined",
+        "syntax": "L",
+        "tokens": [
+          "L"
+        ],
+        "match": {
+          "type": "prefix",
+          "prefixes": [
+            "L"
+          ]
+        },
+        "insert": "L",
+        "description": "List groups you are a member of."
+      },
+      {
+        "id": "join_quiet",
+        "syntax": "J <group>",
+        "tokens": [
+          "J"
+        ],
+        "examples": [
+          "J SKYWARN",
+          "J ISS"
+        ],
+        "match": {
+          "type": "parameterized",
+          "prefixes": [
+            "J"
+          ],
+          "parameters": [
+            {
+              "name": "group",
+              "label": "Group name",
+              "placeholder": "SKYWARN"
+            }
+          ]
+        },
+        "insert": "J ",
+        "description": "Join a group quietly (no announcement)."
+      },
+      {
+        "id": "keepalive",
+        "syntax": "K <group1> [group2] …",
+        "tokens": [
+          "K"
+        ],
+        "examples": [
+          "K SKYWARN",
+          "K SKYWARN ISS WX"
+        ],
+        "match": {
+          "type": "parameterized",
+          "prefixes": [
+            "K"
+          ],
+          "parameters": [
+            {
+              "name": "groups",
+              "label": "Group names",
+              "placeholder": "SKYWARN ISS"
+            }
+          ]
+        },
+        "insert": "K ",
+        "description": "Quietly refresh membership for one or more groups (watch APRS message length)."
+      },
+      {
+        "id": "cq_group",
+        "syntax": "CQ <group> <text>",
+        "tokens": [
+          "CQ"
+        ],
+        "examples": [
+          "CQ SKYWARN Spotter net starting",
+          "CQ ISS Pass in 10 minutes"
+        ],
+        "match": {
+          "type": "parameterized",
+          "prefixes": [
+            "CQ"
+          ],
+          "parameters": [
+            {
+              "name": "group",
+              "label": "Group name",
+              "placeholder": "SKYWARN"
+            },
+            {
+              "name": "text",
+              "label": "Announcement",
+              "placeholder": "Your message"
+            }
+          ]
+        },
+        "insert": "CQ ",
+        "description": "Join group and send announcement to members."
+      },
+      {
+        "id": "unjoin",
+        "syntax": "U <group>",
+        "tokens": [
+          "U"
+        ],
+        "examples": [
+          "U SKYWARN"
+        ],
+        "match": {
+          "type": "parameterized",
+          "prefixes": [
+            "U"
+          ],
+          "parameters": [
+            {
+              "name": "group",
+              "label": "Group name",
+              "placeholder": "SKYWARN"
+            }
+          ]
+        },
+        "insert": "U ",
+        "description": "Leave/unjoin a group."
+      }
+    ]
+  },
+  "description": "Announcement group server — join groups and send announcements to members with similar interests."
 }

@@ -2,7 +2,7 @@
   "$id": "https://github.com/islandmagic/aprs-services-catalog/schema/service.v1.schema.json",
   "title": "APRS Service Definition",
   "type": "object",
-  "required": ["id", "kind", "callsigns", "summary", "category", "icon", "compose"],
+  "required": ["id", "kind", "callsigns", "description", "category", "icon", "compose"],
   "additionalProperties": false,
   "properties": {
     "id": {
@@ -22,7 +22,7 @@
       }
     },
     "display_name": { "type": "string", "minLength": 1 },
-    "summary": { "type": "string", "minLength": 1 },
+    "description": { "type": "string", "minLength": 1 },
     "category": {
       "type": "string",
       "enum": ["weather", "mailbox", "messaging", "relay", "net", "info"]
@@ -64,12 +64,11 @@
   "$defs": {
     "command": {
       "type": "object",
-      "required": ["id", "title", "summary", "syntax", "match"],
+      "required": ["id", "description", "syntax", "match"],
       "additionalProperties": false,
       "properties": {
         "id": { "type": "string", "pattern": "^[a-z][a-z0-9_-]*$" },
-        "title": { "type": "string" },
-        "summary": { "type": "string" },
+        "description": { "type": "string" },
         "syntax": { "type": "string" },
         "tokens": {
           "type": "array",
