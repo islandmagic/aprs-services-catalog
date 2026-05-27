@@ -14,6 +14,12 @@ on:
       - "schema/**"
       - "scripts/**"
       - ".github/workflows/publish-catalog.yml"
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: Publish to GitHub Pages (master only)
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -26,7 +32,7 @@ concurrency:
 
 jobs:
   validate:
-    if: github.event_name == 'pull_request'
+    if: github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -38,7 +44,9 @@ jobs:
       - run: npm run validate
 
   publish:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: |
+      (github.event_name == 'push' && github.ref == 'refs/heads/master') ||
+      (github.event_name == 'workflow_dispatch' && inputs.publish && github.ref == 'refs/heads/master')
     runs-on: ubuntu-latest
     environment:
       name: github-pages
