@@ -12,12 +12,8 @@
   },
   "links": [
     {
-      "label": "Commands",
+      "label": "Help",
       "url": "http://aprsph.net"
-    },
-    {
-      "label": "Net log",
-      "url": "https://aprsph.net/#net-logs"
     }
   ],
   "compose": {

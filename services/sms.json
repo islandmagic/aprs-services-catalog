@@ -12,12 +12,8 @@
   },
   "links": [
     {
-      "label": "How-To",
+      "label": "Help",
       "url": "https://aprs.wiki/"
-    },
-    {
-      "label": "Setup",
-      "url": "https://aprs.wiki/howto/"
     }
   ],
   "compose": {
