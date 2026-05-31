@@ -4,7 +4,7 @@
   "callsigns": [
     "APRSPH"
   ],
-  "icon": "person.3",
+  "icon": "person.2.badge.gearshape",
   "compose": {
     "intro": "Check in to the daily APRSPH Net or send bot commands to APRSPH. The net resets at 0000 UTC; check in again each day to stay on the list.",
     "commands": [
