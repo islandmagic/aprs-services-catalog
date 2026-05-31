@@ -220,5 +220,6 @@
     ]
   },
   "description": "Announcement group server — join groups and send announcements to members with similar interests.",
-  "url": "http://aprsisce.wikidot.com/doc:ansrvr"
+  "url": "http://aprsisce.wikidot.com/doc:ansrvr",
+  "alerts_muted_by_default": true
 }

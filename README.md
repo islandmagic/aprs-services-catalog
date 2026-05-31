@@ -16,6 +16,7 @@ https://islandmagic.github.io/aprs-services-catalog/aprs-services.v1.json
 2. Fill required fields:
    - `callsigns`: uppercase base callsigns only (no SSID suffix in the array).
    - `icon`: SF Symbol name (e.g. `cloud.sun`).
+   - `alerts_muted_by_default`: optional; set `true` for broadcast/net services where push alerts are usually noise.
    - `compose.commands`: at least one command with a `match` rule (stubs may use `[]`).
 3. Open a PR — CI validates JSON Schema and unique callsigns.
 4. Merge — GitHub Pages deploys the compiled catalog (~1 min).

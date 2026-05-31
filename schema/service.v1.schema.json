@@ -25,6 +25,7 @@
     "description": { "type": "string", "minLength": 1 },
     "icon": { "type": "string", "minLength": 1 },
     "url": { "type": "string", "format": "uri" },
+    "alerts_muted_by_default": { "type": "boolean" },
     "compose": {
       "type": "object",
       "required": ["intro", "commands"],

@@ -307,5 +307,6 @@
     ]
   },
   "description": "Network of operators sharing messages and position packets through radio and internet.",
-  "url": "http://aprsph.net"
+  "url": "http://aprsph.net",
+  "alerts_muted_by_default": true
 }
