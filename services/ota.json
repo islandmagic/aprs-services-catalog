@@ -1,0 +1,344 @@
+{
+    "id": "ota",
+    "kind": "bot",
+    "callsigns": [
+      "OTA"
+    ],
+    "display_name": "OTA",
+    "icon": "diamond.fill",
+    "description": "On The Air — find ops, chase hosts, and log QSOs for points over APRS.",
+    "url": "https://aprsota.org",
+    "compose": {
+      "intro": "Find an op with CQ, chase a host, or go on the air yourself with HOST. Prefer radio for hosting and confirming contacts.",
+      "commands": [
+        {
+          "id": "cq",
+          "syntax": "CQ",
+          "tokens": [
+            "CQ"
+          ],
+          "match": {
+            "type": "prefix",
+            "prefixes": [
+              "CQ"
+            ]
+          },
+          "insert": "CQ",
+          "description": "List hosts on the air right now."
+        },
+        {
+          "id": "chase",
+          "syntax": "CHASE <callsign> [message]",
+          "tokens": [
+            "CHASE",
+            "@"
+          ],
+          "examples": [
+            "CHASE K7ABC-6 greetings from mike",
+            "@K7ABC-6 greetings from mike"
+          ],
+          "match": {
+            "type": "parameterized",
+            "prefixes": [
+              "CHASE",
+              "@"
+            ],
+            "parameters": [
+              {
+                "name": "callsign",
+                "label": "Host callsign",
+                "placeholder": "K7ABC-6"
+              },
+              {
+                "name": "message",
+                "label": "Message",
+                "placeholder": "greetings from mike"
+              }
+            ]
+          },
+          "insert": "CHASE ",
+          "description": "Call a host on the air to start a QSO."
+        },
+        {
+          "id": "host",
+          "syntax": "HOST [description]",
+          "tokens": [
+            "HOST",
+            "QRV"
+          ],
+          "examples": [
+            "HOST summit op HT and a wire",
+            "QRV"
+          ],
+          "match": {
+            "type": "parameterized",
+            "prefixes": [
+              "HOST",
+              "QRV"
+            ],
+            "parameters": [
+              {
+                "name": "description",
+                "label": "Description",
+                "placeholder": "summit op HT and a wire"
+              }
+            ]
+          },
+          "insert": "HOST ",
+          "description": "Go on the air and start hosting an op (RF required)."
+        },
+        {
+          "id": "qsl",
+          "syntax": "QSL <callsign> [message]",
+          "tokens": [
+            "QSL"
+          ],
+          "examples": [
+            "QSL W1XYZ-5 thx for the contact 73"
+          ],
+          "match": {
+            "type": "parameterized",
+            "prefixes": [
+              "QSL"
+            ],
+            "parameters": [
+              {
+                "name": "callsign",
+                "label": "Chaser callsign",
+                "placeholder": "W1XYZ-5"
+              },
+              {
+                "name": "message",
+                "label": "Message",
+                "placeholder": "thx for the contact 73"
+              }
+            ]
+          },
+          "insert": "QSL ",
+          "description": "Confirm a chaser’s contact and log the QSO."
+        },
+        {
+          "id": "blast",
+          "syntax": "BLAST [callsign] <text>",
+          "tokens": [
+            "BLAST",
+            "QST"
+          ],
+          "examples": [
+            "BLAST moving to the north summit",
+            "QST K7ABC-6 thanks for the contact, 73"
+          ],
+          "match": {
+            "type": "parameterized",
+            "prefixes": [
+              "BLAST",
+              "QST"
+            ],
+            "parameters": [
+              {
+                "name": "callsign",
+                "label": "Host callsign (optional)",
+                "placeholder": "K7ABC-6"
+              },
+              {
+                "name": "text",
+                "label": "Message",
+                "placeholder": "moving to the north summit"
+              }
+            ]
+          },
+          "insert": "BLAST ",
+          "description": "Send one message to everyone on an op."
+        },
+        {
+          "id": "info",
+          "syntax": "INFO [callsign]",
+          "tokens": [
+            "INFO"
+          ],
+          "examples": [
+            "INFO",
+            "INFO K7ABC-6"
+          ],
+          "match": {
+            "type": "parameterized",
+            "prefixes": [
+              "INFO"
+            ],
+            "parameters": [
+              {
+                "name": "callsign",
+                "label": "Callsign",
+                "placeholder": "K7ABC-6"
+              }
+            ]
+          },
+          "insert": "INFO ",
+          "description": "Ask about an op: yours, or the one a callsign is running."
+        },
+        {
+          "id": "time",
+          "syntax": "TIME",
+          "tokens": [
+            "TIME",
+            "QRT?"
+          ],
+          "match": {
+            "type": "prefix",
+            "prefixes": [
+              "TIME",
+              "QRT?"
+            ]
+          },
+          "insert": "TIME",
+          "description": "Ask how much time is left before your op ends."
+        },
+        {
+          "id": "stay",
+          "syntax": "STAY",
+          "tokens": [
+            "STAY"
+          ],
+          "match": {
+            "type": "prefix",
+            "prefixes": [
+              "STAY"
+            ]
+          },
+          "insert": "STAY",
+          "description": "Add 30 minutes to your op, up to the 2 hour maximum."
+        },
+        {
+          "id": "done",
+          "syntax": "DONE [callsign]",
+          "tokens": [
+            "DONE",
+            "QRT"
+          ],
+          "examples": [
+            "DONE",
+            "DONE K7ABC-6",
+            "QRT"
+          ],
+          "match": {
+            "type": "parameterized",
+            "prefixes": [
+              "DONE",
+              "QRT"
+            ],
+            "parameters": [
+              {
+                "name": "callsign",
+                "label": "Host callsign (optional)",
+                "placeholder": "K7ABC-6"
+              }
+            ]
+          },
+          "insert": "DONE",
+          "description": "End your op, or leave another op’s blasts."
+        },
+        {
+          "id": "plan",
+          "syntax": "PLAN <time> [description]",
+          "tokens": [
+            "PLAN",
+            "QRX"
+          ],
+          "examples": [
+            "PLAN 2026-08-12T18:30Z lake op, HT and a wire",
+            "QRX 2026-08-12T18:30Z"
+          ],
+          "match": {
+            "type": "parameterized",
+            "prefixes": [
+              "PLAN",
+              "QRX"
+            ],
+            "parameters": [
+              {
+                "name": "time",
+                "label": "Time (UTC)",
+                "placeholder": "2026-08-12T18:30Z"
+              },
+              {
+                "name": "description",
+                "label": "Description",
+                "placeholder": "lake op, HT and a wire"
+              }
+            ]
+          },
+          "insert": "PLAN ",
+          "description": "Announce a planned op posted to aprsota.org."
+        },
+        {
+          "id": "unplan",
+          "syntax": "UNPLAN <time>",
+          "tokens": [
+            "UNPLAN",
+            "CANCEL"
+          ],
+          "examples": [
+            "UNPLAN 2026-08-12T18:30Z",
+            "CANCEL 2026-08-12T18:30Z"
+          ],
+          "match": {
+            "type": "parameterized",
+            "prefixes": [
+              "UNPLAN",
+              "CANCEL"
+            ],
+            "parameters": [
+              {
+                "name": "time",
+                "label": "Time (UTC)",
+                "placeholder": "2026-08-12T18:30Z"
+              }
+            ]
+          },
+          "insert": "UNPLAN ",
+          "description": "Cancel one of your planned ops."
+        },
+        {
+          "id": "ping",
+          "syntax": "PING [text]",
+          "tokens": [
+            "PING"
+          ],
+          "examples": [
+            "PING",
+            "PING hello there"
+          ],
+          "match": {
+            "type": "parameterized",
+            "prefixes": [
+              "PING"
+            ],
+            "parameters": [
+              {
+                "name": "text",
+                "label": "Text",
+                "placeholder": "hello there"
+              }
+            ]
+          },
+          "insert": "PING",
+          "description": "Check your messaging path to the OTA bot, and whether it is RF."
+        },
+        {
+          "id": "help",
+          "syntax": "HELP",
+          "tokens": [
+            "HELP"
+          ],
+          "match": {
+            "type": "prefix",
+            "prefixes": [
+              "HELP"
+            ]
+          },
+          "insert": "HELP",
+          "description": "Ask what to send: the three commands to start with."
+        }
+      ]
+    }
+  }
